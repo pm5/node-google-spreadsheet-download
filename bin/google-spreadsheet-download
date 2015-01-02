@@ -1,0 +1,15 @@
+#!/bin/sh
+
+':' // Hack to pass parameters to Node before running this file
+':' //; exec "`command -v node || command -v nodejs`" "$0" "$@"
+
+if (process.argv.length != 4) {
+  console.log("Usage: google-spreadsheet-download <key> <sheet-number>");
+  process.exit(-1);
+}
+var key = process.argv[2];
+var num = process.argv[3];
+var sheet = new (require("google-spreadsheet"))(key);
+sheet.getRows(num, function (err, data) {
+  console.log(JSON.stringify(data));
+});

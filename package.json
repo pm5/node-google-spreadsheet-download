@@ -1,0 +1,24 @@
+{
+  "name": "google-spreadsheet-download",
+  "version": "0.0.1",
+  "description": "Command-line tool to download Google Spreadsheets as JSON files.",
+  "directories": {
+    "bin": "./bin"
+  },
+  "bin": {
+    "google-spreadsheet-download": "./bin/google-spreadsheet-download"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "google",
+    "spreadsheet",
+    "cli"
+  ],
+  "author": "Pomin Wu <pomin5@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "google-spreadsheet": "^0.2.8"
+  }
+}
