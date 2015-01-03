@@ -3,13 +3,20 @@
 ':' // Hack to pass parameters to Node before running this file
 ':' //; exec "`command -v node || command -v nodejs`" "$0" "$@"
 
-if (process.argv.length != 4) {
-  console.log("Usage: google-spreadsheet-download <key> <sheet-number>");
+if (process.argv.length < 4 || process.argv.length > 5) {
+  console.log("Usage: google-spreadsheet-download [-xml] <key> <sheet-number>");
   process.exit(-1);
 }
-var key = process.argv[2];
-var num = process.argv[3];
+var xml = (process.argv[2] === "-xml");
+var key = xml ? process.argv[3] : process.argv[2];
+var num = xml ? process.argv[4] : process.argv[3];
 var sheet = new (require("google-spreadsheet"))(key);
 sheet.getRows(num, function (err, data) {
+  if (! xml) {
+    data = data.map(function (d) {
+      d["_xml"] = undefined;
+      return d;
+    });
+  }
   console.log(JSON.stringify(data));
 });

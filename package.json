@@ -1,6 +1,6 @@
 {
   "name": "google-spreadsheet-download",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command-line tool to download Google Spreadsheets as JSON files.",
   "directories": {
     "bin": "./bin"
